@@ -1,0 +1,4 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(20,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(26): warning C4172: returning address of local variable or temporary: poker
+  ConsoleApplication1.vcxproj -> C:\Users\admin\source\repos\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
