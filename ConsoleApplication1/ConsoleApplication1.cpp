@@ -66,8 +66,10 @@ int main()
     int *poker_set = shuffle(), poker_top = 51;
     player P1(poker_set,poker_top,name), P2(poker_set, poker_top);
     for (int i = 0; i < 2; i++) {
-
+        P1.give_card(poker_set,poker_top);
+        P2.give_card(poker_set, poker_top);
     }
+    P1.echo_card(name);
     system("pause");
     return 0;
 }
