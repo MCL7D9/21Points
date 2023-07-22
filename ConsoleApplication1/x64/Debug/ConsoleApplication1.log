@@ -1,5 +1,7 @@
 ﻿C:\Applications\Visual Studio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (ConsoleApplication1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   main.cpp
-C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\main.cpp(19,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\main.cpp(25): warning C4172: returning address of local variable or temporary: poker
+C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\main.cpp(22,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\main.cpp(73,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\main.cpp(104,23): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\admin\source\repos\ConsoleApplication1\ConsoleApplication1\main.cpp(28): warning C4172: returning address of local variable or temporary: poker
   ConsoleApplication1.vcxproj -> C:\Users\admin\source\repos\ConsoleApplication1\x64\Debug\main.exe

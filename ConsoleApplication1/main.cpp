@@ -13,6 +13,9 @@ USI &shuffle() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 13; j++) {
             poker[i * 13 + j] = j + 1;
+            if (j + 1 > 10) {
+                poker[i * 13 + j] = 10;
+            }
         }
     }
     for (int i = 0; i < 52; i++) {
@@ -27,38 +30,93 @@ USI &shuffle() {
 
 class player {
 private:
-    int cards[20] = { 0 }, top = 0,sum=0;
+    USI cards[20] = { 0 }, top = 0,sum=0;
 
 public:
-    void give_card() {
+    int give_card() {
         cards[top] = poker_set[poker_top];
+        sum += poker_set[poker_top];
         poker_top -= 1;
         top += 1;
+        return 0;
     }
 
-    void echo_card() {
+    int echo_card() {
         cout << "Player " << name << "\'s card set are:\n ";
         for (int i = 0; i < top; i++) {
             cout << "[" << cards[i] << "] ";
         }
         cout << "====================\n";
+        return 0;
+    }
+    
+    int echo_info(USI i) {
+        cout << "Sum Of Your Cards Is" << sum << endl;
+        cout << "First Card Of Your Enemy's Cards Is" << i <<endl;
+        return 0;
     }
 
+    USI first_card() {
+        return cards[1];
+    }
+    USI length() {
+        return top + 1;
+    }
+
+    USI total() {
+        return sum;
+    }
 };
+
+char AI_decide(player *obj,player *self) {
+    USI first = obj->first_card(),randNum=0,SUM=self->total(),LENGTH0=self->length(), LENGTH1=obj->length();
+    srand(time(nullptr));
+    randNum = rand() % 7;
+    if ((SUM<11)||(randNum==0&&SUM<19)||(randNum>0&&randNum<5&&SUM<15)||(randNum>0&&randNum<6&&SUM<13)){
+
+        return 59;
+
+    }
+    else {
+        return 78;
+    }
+
+
+}
 
 int round_ctrl(player *Player,player *AI) {
     char p1_choice=0, p2_choice=0;
-    while (p1_choice != 78){
-        cout << "Do You Want To Add A Card?\n Yes[Y] No[N] Information[I]\n";
-        cin.get(p1_choice);
-        switch (p1_choice) {
-        case 59:
-            Player->give_card();
-        case 78:
-        case 73:
-        default:
-            break;
+    USI aiTotal=0,playerTotal=0;
+    while (p1_choice != 78 || p2_choice != 78) {
+        if (p1_choice != 78) {
+            do {
+                cout << "Do You Want To Add A Card?\n Yes[Y] No[N] Information[I]\n";
+                cin >> p1_choice;
+                if (p1_choice == 59) {
+                    Player->give_card();
+                }
+                if (p1_choice==73) {
+                    Player->echo_info(AI->first_card());
+                }
+            } while (p1_choice == 73);
         }
+        if (p2_choice != 78) {
+            p2_choice == AI_decide(Player, AI);
+            if (p2_choice == 59) {
+                AI->give_card();
+            }
+        }
+    }
+    aiTotal = AI->total();
+    playerTotal = Player->total();
+    if (aiTotal==playerTotal || (aiTotal>21 && playerTotal>21)) {
+        cout << "Draw";
+    }
+    if (aiTotal > 21 || playerTotal > aiTotal) {
+        cout << name << " Win!";
+    }
+    if (playerTotal > 21 || aiTotal > playerTotal) {
+        cout<<"AI Win!";
     }
     return 0;
 }
