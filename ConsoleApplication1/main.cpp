@@ -13,7 +13,7 @@ USI &shuffle() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 13; j++) {
             poker[i * 13 + j] = j + 1;
-            if (j + 1 > 10) {
+            if ((j + 1 > 10)&&(j + 1 != 11)) {
                 poker[i * 13 + j] = 10;
             }
         }
@@ -78,6 +78,7 @@ char AI_decide(player *obj,player *self) {
 
     }
     else {
+        cout << "AI didn't get a card\n";
         return 78;
     }
 
@@ -101,9 +102,10 @@ int round_ctrl(player *Player,player *AI) {
             } while (p1_choice == 73);
         }
         if (p2_choice != 78) {
-            p2_choice == AI_decide(Player, AI);
+            p2_choice = AI_decide(Player, AI);
             if (p2_choice == 59) {
                 AI->give_card();
+                cout << "AI Got A Card";
             }
         }
     }
@@ -113,10 +115,10 @@ int round_ctrl(player *Player,player *AI) {
         cout << "Draw";
     }
     if (aiTotal > 21 || playerTotal > aiTotal) {
-        cout << name << " Win!";
+        cout << endl << name << " Win!";
     }
-    if (playerTotal > 21 || aiTotal > playerTotal) {
-        cout<<"AI Win!";
+    else {
+        cout << endl << "AI Win!";
     }
     return 0;
 }
